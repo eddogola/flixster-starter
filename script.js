@@ -25,11 +25,11 @@ async function showResults(link) {
     for (let i = 0; i < results.results.length; i++) {
         if (results.results[i].poster_path) {
             moviesGrid.innerHTML += `
-            <div class="movie-card col-md-4 p-1 mb-2">
+            <div class="movie-card col-md-3 p-4 mb-2">
                     <img class="movie-poster img-fluid" 
                     src="${IMAGE_BASE_URL + "/w500" + results.results[i].poster_path + `?api_key=${API_KEY}`}" alt="${results.results[i].title}"/>
-                    <strong class="movie-title">${results.results[i].title}</strong>
-                    <span class="movie-votes">⭐ ${results.results[i].vote_average}</span>
+                    <p class="movie-votes">⭐ ${results.results[i].vote_average}</p>
+                    <strong class="movie-title">${results.results[i].title}</strong>  
             </div>`
         }
     }
@@ -44,10 +44,12 @@ function addEventListeners() {
         if (searchBar.value != "") {
             isSearch = true;
             closeSearchButton.removeAttribute('hidden');
-            moviesGrid.innerHTML = "";
+            moviesGrid.innerHTML = "Search results for: " + `<em>${searchBar.value}</em>`;
             showResults(makeSearchLink(searchBar.value, 1));
         } else {
             closeSearchButton.setAttribute('hidden', true);
+            moviesGrid.innerHTML = "<h1 class='pl-3'>Now Playing</h1>";
+            showResults(makeNowPlayingLink(1))
         }
     });
 
@@ -55,7 +57,7 @@ function addEventListeners() {
         if (searchBar.value != "" && event.key === "Enter") {
             event.preventDefault();
             isSearch = true;
-            moviesGrid.innerHTML = "";
+            moviesGrid.innerHTML = "Search results for: " + `<i>${searchBar.value}</i>`;
             showResults(makeSearchLink(searchBar.value, 1));
         }
     });
@@ -73,10 +75,12 @@ function addEventListeners() {
         searchBar.value = "";
         moviesGrid.innerHTML = "";
         showResults(makeNowPlayingLink(1));
+        closeSearchButton.setAttribute('hidden', true);
     });
 }
 
 window.onload = function() {
+    moviesGrid.innerHTML = "<h1 class='pl-3'>Now Playing</h1>";
     showResults(makeNowPlayingLink(1));
     addEventListeners();
 }
