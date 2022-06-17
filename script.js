@@ -5,10 +5,10 @@ const IMAGE_BASE_URL = "http://image.tmdb.org/t/p"
 const NOW_PLAYING = "/movie/now_playing";
 const SEARCH = "/search/movie";
 
-const containerDiv = document.querySelector('.container');
-const LoadMoreButton = document.querySelector("#load-more");
-const searchBar = document.querySelector('#search-bar');
-const searchButton = document.querySelector('#search-button');
+const moviesGrid = document.querySelector('#movies-grid');
+const loadMoreButton = document.querySelector("#load-more-movies-btn");
+const searchBar = document.querySelector('#search-input');
+const closeSearchButton = document.querySelector('#close-search-btn');
 
 function makeNowPlayingLink(page) {
     return BASE_URL + NOW_PLAYING + `?api_key=${API_KEY}&page=${page}`;
@@ -24,10 +24,13 @@ async function showResults(link) {
 
     for (let i = 0; i < results.results.length; i++) {
         if (results.results[i].poster_path) {
-            containerDiv.innerHTML += `
-            <h3>${results.results[i].title}</h3>
-            <img src="${IMAGE_BASE_URL + "/w500" + results.results[i].poster_path + `?api_key=${API_KEY}`}" alt="${results.results[i].title}"/>
-            <span>${results.results[i].vote_count}</span>`
+            moviesGrid.innerHTML += `
+            <div class="movie-card>
+                <h3 class="movie-title">${results.results[i].title}</h3>
+                <img class="movie-poster" 
+                src="${IMAGE_BASE_URL + "/w500" + results.results[i].poster_path + `?api_key=${API_KEY}`}" alt="${results.results[i].title}"/>
+                <span class="movie-votes">${results.results[i].vote_average}</span>
+            </div>`
         }
     }
 }
@@ -40,18 +43,36 @@ function addEventListeners() {
     searchBar.addEventListener('keyup', () => {
         if (searchBar.value != "") {
             isSearch = true;
-            containerDiv.innerHTML = "";
+            closeSearchButton.removeAttribute('hidden');
+            moviesGrid.innerHTML = "";
+            showResults(makeSearchLink(searchBar.value, 1));
+        } else {
+            closeSearchButton.setAttribute('hidden', true);
+        }
+    });
+
+    searchBar.addEventListener('keypress', (event) => {
+        if (searchBar.value != "" && event.key === "Enter") {
+            event.preventDefault();
+            isSearch = true;
+            moviesGrid.innerHTML = "";
             showResults(makeSearchLink(searchBar.value, 1));
         }
     });
 
-    LoadMoreButton.addEventListener('click', () => {
+    loadMoreButton.addEventListener('click', () => {
         current_page += 1;
         if (isSearch) {
             showResults(makeSearchLink(searchBar.value, current_page));
         } else {
             showResults(makeNowPlayingLink(current_page))
         }
+    });
+
+    closeSearchButton.addEventListener('click', () => {
+        searchBar.value = "";
+        moviesGrid.innerHTML = "";
+        showResults(makeNowPlayingLink(1));
     });
 }
 
