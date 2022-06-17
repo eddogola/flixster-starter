@@ -3,7 +3,7 @@ body {
     color: #EBF5EE;
 }
 
-#load-more-movies-btn, #close-search-button {
+#load-more-movies-btn, #close-search-btn {
     border-radius: 20px;
     padding-left: 5px;
     padding-right: 5px;
@@ -12,7 +12,7 @@ body {
     font-weight: bold;
 }
 
-#load-more-movies-btn:hover, #close-search-button:hover {
+#load-more-movies-btn:hover, #close-search-btn:hover {
     color: #BFA89E;
     background-color: #283044;
 }
