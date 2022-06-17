@@ -35,16 +35,16 @@ async function showResults(link) {
     }
 }
 
-var isSearch = false;
+let isSearch = false;
 
 function addEventListeners() {
-    var current_page = 1;
+    let current_page = 1;
 
     searchBar.addEventListener('keyup', () => {
         if (searchBar.value != "") {
             isSearch = true;
             closeSearchButton.removeAttribute('hidden');
-            moviesGrid.innerHTML = "Search results for: " + `<em>${searchBar.value}</em>`;
+            moviesGrid.innerHTML = "<p class='pl-3'>Search results for: " + `<em>${searchBar.value}</em>` + "</p>";
             showResults(makeSearchLink(searchBar.value, 1));
         } else {
             closeSearchButton.setAttribute('hidden', true);
@@ -73,7 +73,7 @@ function addEventListeners() {
 
     closeSearchButton.addEventListener('click', () => {
         searchBar.value = "";
-        moviesGrid.innerHTML = "";
+        moviesGrid.innerHTML = "<h1 class='pl-3'>Now Playing</h1>";
         showResults(makeNowPlayingLink(1));
         closeSearchButton.setAttribute('hidden', true);
     });
