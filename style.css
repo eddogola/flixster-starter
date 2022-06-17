@@ -1,1 +1,22 @@
+body {
+    background: #157A6E;
+    color: #EBF5EE;
+}
 
+#load-more-movies-btn {
+    border-radius: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    color: #283044;
+    background-color: #BFA89E;
+    font-weight: bold;
+}
+
+#load-more-movies-btn:hover {
+    color: #BFA89E;
+    background-color: #283044;
+}
+
+.movie-poster {
+    border-radius: 5px;
+}
