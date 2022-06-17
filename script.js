@@ -29,7 +29,7 @@ async function showResults(link) {
                     <img class="movie-poster img-fluid" 
                     src="${IMAGE_BASE_URL + "/w500" + results.results[i].poster_path + `?api_key=${API_KEY}`}" alt="${results.results[i].title}"/>
                     <strong class="movie-title">${results.results[i].title}</strong>
-                    <span class="movie-votes">${results.results[i].vote_average}</span>
+                    <span class="movie-votes">⭐ ${results.results[i].vote_average}</span>
             </div>`
         }
     }
