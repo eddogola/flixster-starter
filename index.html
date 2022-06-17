@@ -1,27 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flixster</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Flixster</title>
+        <!--Bootstrap CSS-->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <form method="get" class="container">
+            <div class="row">
+                <div class="col-md-4 offset-md-4  mb-5 pt-3">
+                        <h1 class="text-center text-white">
+                            <span><img src="popcorn.png" class="img-responsive" width="30%" alt="logo"></span>
+                            Flixster
+                        </h1>
+                    <input
+                        type="search"
+                        name="searchBar"
+                        id="search-input"
+                        placeholder="What movie are you looking for..."
+                        class="form-control"
+                    />
+                    <button type="button" hidden id="close-search-btn">
+                        &times;
+                    </button>
+                </div>
+            </div>
+        </form>
 
-<h1>Flixster</h1>
+        <div class="container-fluid">
+            <div id="movies-grid" class="row"></div>
+        </div>
 
-<form method="get">
-    <input type="search" name="searchBar" id="search-input" placeholder="What movie are you looking for...">
-    <button type="button" hidden id="close-search-btn">&times;</button>
-</form>
+        <!--Load more button-->
+        <div class="row">
+            <div class="col-sm-3 offset-sm-6 mb-3">
+                <button type="button" id="load-more-movies-btn">&#8595</button>
+            </div>
+        </div>
 
-<div id="movies-grid">
-
-</div>
-
-<!--Load more button-->
-<button type="button" id="load-more-movies-btn">Load more...</button>
-
-<script src="script.js"></script>
-</body>
+        <script src="script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
 </html>
