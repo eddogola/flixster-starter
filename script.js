@@ -25,11 +25,11 @@ async function showResults(link) {
     for (let i = 0; i < results.results.length; i++) {
         if (results.results[i].poster_path) {
             moviesGrid.innerHTML += `
-            <div class="movie-card>
-                <h3 class="movie-title">${results.results[i].title}</h3>
-                <img class="movie-poster" 
-                src="${IMAGE_BASE_URL + "/w500" + results.results[i].poster_path + `?api_key=${API_KEY}`}" alt="${results.results[i].title}"/>
-                <span class="movie-votes">${results.results[i].vote_average}</span>
+            <div class="movie-card col-md-4 p-1 mb-2">
+                    <img class="movie-poster img-fluid" 
+                    src="${IMAGE_BASE_URL + "/w500" + results.results[i].poster_path + `?api_key=${API_KEY}`}" alt="${results.results[i].title}"/>
+                    <strong class="movie-title">${results.results[i].title}</strong>
+                    <span class="movie-votes">${results.results[i].vote_average}</span>
             </div>`
         }
     }
