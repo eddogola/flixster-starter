@@ -47,6 +47,12 @@ async function showResults(api_key, link, moviesGridElement) {
     }
 }
 
+/**
+ * addEventListeners has the side effect of adding data to the movies grid accordingly whenever certain events are triggered
+ * @param {string} api_key for authentication
+ * @param {string} base_url for the API
+ * @param {object} moviesGridElement  - container where data is added
+ */
 function addEventListeners(api_key, base_url, moviesGridElement) {
     const loadMoreButton = document.querySelector("#load-more-movies-btn");
     const searchBar = document.querySelector('#search-input');
